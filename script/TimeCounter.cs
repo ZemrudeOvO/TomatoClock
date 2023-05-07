@@ -16,5 +16,6 @@ public partial class TimeCounter : Timer
         this.Timeout += () => audioStreamPlayer.Play(0);
         this.Timeout += () => startButton.Disabled = false;
         this.Timeout += () => restartButton.Disabled = true;
+        this.Timeout += () => OS.Alert("Tomato", "Tomato clock time out!");
     }
 }

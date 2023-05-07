@@ -18,6 +18,10 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://resource/icon.png"
 
+[audio]
+
+buses/default_bus_layout="res://resource/default_bus_layout.tres"
+
 [autoload]
 
 Status="*res://script/Status.cs"
