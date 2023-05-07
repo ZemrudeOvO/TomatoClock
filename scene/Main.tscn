@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=3 uid="uid://caj4w0lr5h3aj"]
+
+[ext_resource type="Script" path="res://script/DisplaySystemTime.cs" id="1_f5u3u"]
+[ext_resource type="Script" path="res://script/AnalogClock.cs" id="2_h1cu5"]
+[ext_resource type="Texture2D" uid="uid://c1jqjqky6c1j3" path="res://resource/CircleOutline.png" id="2_x1yfk"]
+[ext_resource type="Texture2D" uid="uid://dvexx6l4vlmne" path="res://resource/Hour.png" id="4_dlh66"]
+[ext_resource type="Texture2D" uid="uid://dt8hs0oscwhgu" path="res://resource/Minute.png" id="4_ekagm"]
+[ext_resource type="Script" path="res://script/TimeCounter.cs" id="6_gx6mi"]
+[ext_resource type="Script" path="res://script/DisplayWorkAndRestTIme.cs" id="7_3ec5h"]
+[ext_resource type="Script" path="res://script/ButtonPressedStartClock.cs" id="8_hakv5"]
+[ext_resource type="Script" path="res://script/RestartTimer.cs" id="9_lktqd"]
+[ext_resource type="AudioStream" uid="uid://brxcah86yw2l6" path="res://SoundEffects/b_ui_win.wav" id="9_ovu5h"]
+[ext_resource type="Script" path="res://script/SpinBoxInstantChangeWorkTime.cs" id="10_x4r2b"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SystemTime" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_bottom = 26.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 48
+text = "00:00:00"
+script = ExtResource("1_f5u3u")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(1057, 35)
+scale = Vector2(0.4, 0.4)
+script = ExtResource("2_h1cu5")
+metadata/_edit_group_ = true
+
+[node name="Circle" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("2_x1yfk")
+
+[node name="Minute" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("4_ekagm")
+
+[node name="Hour" type="Sprite2D" parent="Node2D"]
+rotation = 1.0472
+texture = ExtResource("4_dlh66")
+
+[node name="TimeCounter" type="Timer" parent="." node_paths=PackedStringArray("audioStreamPlayer", "startButton", "restartButton")]
+one_shot = true
+script = ExtResource("6_gx6mi")
+audioStreamPlayer = NodePath("../AudioStreamPlayer")
+startButton = NodePath("../Start")
+restartButton = NodePath("../Restart")
+
+[node name="RestTime" type="Label" parent="." node_paths=PackedStringArray("work")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_right = 63.5
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "00/00"
+horizontal_alignment = 2
+script = ExtResource("7_3ec5h")
+work = NodePath("../TimeCounter")
+
+[node name="Start" type="Button" parent="." node_paths=PackedStringArray("work", "spinBox", "restartButton")]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 401.0
+offset_right = 690.0
+offset_bottom = 451.0
+text = "Start"
+script = ExtResource("8_hakv5")
+work = NodePath("../TimeCounter")
+spinBox = NodePath("../SpinBox")
+restartButton = NodePath("../Restart")
+
+[node name="Restart" type="Button" parent="." node_paths=PackedStringArray("timer")]
+layout_mode = 0
+offset_left = 712.0
+offset_top = 401.0
+offset_right = 826.0
+offset_bottom = 451.0
+text = "Restart"
+script = ExtResource("9_lktqd")
+timer = NodePath("../TimeCounter")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ovu5h")
+
+[node name="SpinBox" type="SpinBox" parent="."]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 401.0
+offset_right = 567.0
+offset_bottom = 451.0
+min_value = 1.0
+value = 10.0
+rounded = true
+script = ExtResource("10_x4r2b")
