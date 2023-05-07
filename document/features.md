@@ -1,12 +1,11 @@
--[ ] Music play & pause
--[ ] volume control
--[ ] white noise
 -[ ] independent volume control of different tracks
 -[ ] music track list
--[x] time clock display
--[x] analog clock display
 -[ ] editable to-do list 
 -[ ] tomato => working => resting | auto change
--[ ] stop watch
--[ ] indoor scene changes in different times
--[ ] system alert when timeout
+-[x] stop watch
+-[x] system alert when timeout
+-[x] Music play & pause
+-[x] volume control
+-[x] white noise
+-[x] time clock display
+-[x] analog clock display

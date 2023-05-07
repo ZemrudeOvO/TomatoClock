@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://caj4w0lr5h3aj"]
+[gd_scene load_steps=18 format=3 uid="uid://caj4w0lr5h3aj"]
 
 [ext_resource type="Script" path="res://script/DisplaySystemTime.cs" id="1_f5u3u"]
 [ext_resource type="Script" path="res://script/AnalogClock.cs" id="2_h1cu5"]
@@ -14,7 +14,9 @@
 [ext_resource type="Script" path="res://script/BgmButton.cs" id="12_vsy41"]
 [ext_resource type="Script" path="res://script/NoiseButton.cs" id="13_xcoc5"]
 [ext_resource type="AudioStream" uid="uid://bumul6hxbix2g" path="res://BGM/All_of_You.mp3" id="13_ydicr"]
+[ext_resource type="Script" path="res://script/BgmFinished.cs" id="14_kw8jv"]
 [ext_resource type="AudioStream" uid="uid://colmmoexqwn0s" path="res://Noise/Rain.mp3" id="15_3tcvw"]
+[ext_resource type="Script" path="res://script/NoiseFinished.cs" id="17_qtks4"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -106,6 +108,7 @@ offset_top = 401.0
 offset_right = 567.0
 offset_bottom = 451.0
 min_value = 1.0
+max_value = 600.0
 value = 10.0
 rounded = true
 script = ExtResource("10_x4r2b")
@@ -123,6 +126,7 @@ script = ExtResource("12_vsy41")
 [node name="BGM" type="AudioStreamPlayer" parent="BgmButton"]
 stream = ExtResource("13_ydicr")
 bus = &"BGM"
+script = ExtResource("14_kw8jv")
 
 [node name="Volume" type="HSlider" parent="BgmButton"]
 layout_mode = 0
@@ -153,6 +157,7 @@ script = ExtResource("13_xcoc5")
 [node name="Noise" type="AudioStreamPlayer" parent="NoiseButton"]
 stream = ExtResource("15_3tcvw")
 bus = &"Noise"
+script = ExtResource("17_qtks4")
 
 [node name="Volume" type="HSlider" parent="NoiseButton"]
 layout_mode = 0
